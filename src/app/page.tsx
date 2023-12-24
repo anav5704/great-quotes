@@ -1,6 +1,6 @@
 export default async function Home() {
     return (
-        <main className="text-6xl flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+        <main className="text-6xl flex pt-[10vh] h-[90vh] flex-col items-center justify-center text-white">
             hello world
         </main>
     );

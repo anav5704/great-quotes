@@ -5,6 +5,7 @@ import { GeistMono } from 'geist/font/mono';
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { Navbar } from "./components/navbar";
 
 export const metadata = {
     title: "Create T3 App",
@@ -19,9 +20,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>
+            <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-zinc-950`    }>
                 <TRPCReactProvider cookies={cookies().toString()}>
-                    {children}
+                    <Navbar />
+                    <main>
+                        {children}
+                    </main>
                 </TRPCReactProvider>
             </body>
         </html>
