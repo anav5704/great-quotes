@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { Navbar } from "./components/navbar";
+import { ModalProvider } from "./providers/modal-provider";
 
 export const metadata = {
     title: "Create T3 App",
@@ -20,8 +21,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-zinc-950`    }>
+            <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-zinc-950`}>
                 <TRPCReactProvider cookies={cookies().toString()}>
+                    <ModalProvider />
                     <Navbar />
                     <main>
                         {children}
