@@ -32,15 +32,35 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-    // callbacks: {
-    //     session: ({ session, user }) => ({
-    //         ...session,
-    //         user: {
-    //             ...session.user,
-    //             id: user.id,
-    //         },
-    //     }),
-    // },
+    callbacks: {
+        async session({ session, token }) {
+            try {
+                if (!session.user.name) throw Error("Name is required")
+                if (!session.user.email) throw Error("Email is required")
+                if (!session.user.image) throw Error("Image is required")
+
+                const user = await db.user.findFirst({
+                    where: {
+                        email: session.user.email
+                    }
+                })
+
+                if (!user) {
+                    await db.user.create({
+                        data: {
+                            name: session?.user?.name,
+                            email: session?.user?.email,
+                            image: session?.user?.image
+                        }
+                    })
+                }
+            } catch (error) {
+                console.log("Auth error: ", error)
+            } finally {
+                return session
+            }
+        }
+    },
     // adapter: PrismaAdapter(db),
     providers: [
         GoogleProvider({
