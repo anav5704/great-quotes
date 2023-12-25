@@ -6,9 +6,9 @@ export const Navbar = async () => {
 
     return (
         <nav className="h-[10vh] text-white border-b border-zinc-800 flex items-center justify-between fixed px-56 w-full">
-            <div>
+            <h3 className="text-lg">
                 Great Quotes
-            </div>
+            </h3>
             <AuthButton session={session} />
         </nav>
     )
