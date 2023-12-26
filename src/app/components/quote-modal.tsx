@@ -39,10 +39,10 @@ export default function QuoteModal() {
                                 />
                             </ModalBody>
                             <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
+                                <Button radius="sm" color="danger" variant="light" onPress={onClose}>
                                     Cancel
                                 </Button>
-                                <Button onClick={() => handleClick()} color="primary" className="text-black" onPress={() => onClose()}>
+                                <Button radius="sm" onClick={() => handleClick()} color="primary" className="text-black" onPress={() => onClose()}>
                                     {action}
                                 </Button>
                             </ModalFooter>

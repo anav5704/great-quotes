@@ -25,7 +25,11 @@ export const quoteRouter = createTRPCRouter({
 
     getQuotes: publicProcedure
         .query(async ({ ctx }) => {
-            const quotes = await db.quote.findMany()
+            const quotes = await db.quote.findMany({
+                include: {
+                    user: true
+                }
+            })
             return quotes
         })
 });
