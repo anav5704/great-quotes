@@ -53,5 +53,21 @@ export const quoteRouter = createTRPCRouter({
             })
 
             return quote
+        }),
+
+    deleteQuote: publicProcedure
+        .input(z.object({
+            id: z.string()
+        }))
+        .mutation(async ({ ctx, input }) => {
+            const { id } = input
+
+            const quote = await db.quote.delete({
+                where: {
+                    id
+                }
+            })
+
+            return quote
         })
 });
