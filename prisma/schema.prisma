@@ -12,12 +12,12 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  name  String
-  email String
-  image String
-
+  id     String  @id @default(uuid())
+  name   String
+  email  String
+  image  String
   quotes Quote[] @relation(name: "QuoteToUser")
+  likes  Like[]  @relation(name: "LikeToUser")
 
   createAt DateTime @default(now())
 }
@@ -25,12 +25,26 @@ model User {
 model Quote {
   id      String @id @default(uuid())
   content String
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id], name: "QuoteToUser")
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], name: "QuoteToUser")
+  likes   Like[] @relation(name: "LikeToQuote")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
   @@index([userId])
+}
+
+model Like {
+  id      String @id @default(uuid())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], name: "LikeToUser")
+  quoteId String
+  quote   Quote  @relation(fields: [quoteId], references: [id], name: "LikeToQuote")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([quoteId])
 }
