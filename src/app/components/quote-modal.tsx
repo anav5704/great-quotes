@@ -11,6 +11,7 @@ export default function QuoteModal() {
     const { isOpen, onClose, type, data } = useModal()
     const { mutate: createQuote } = api.quote.createQuote.useMutation()
     const { mutate: updateQuote } = api.quote.updateQuote.useMutation()
+    const { mutate: deleteQuote } = api.quote.deleteQuote.useMutation()
     const [quote, setQuote] = useState<string>("")
 
     useEffect(() => {
@@ -25,11 +26,12 @@ export default function QuoteModal() {
                 createQuote({ content: quote })
             }
             else if (type === "update") {
-                if(!data.id) throw Error ("Quote ID is required")
+                if (!data.id) throw Error("Quote ID is required")
                 updateQuote({ content: quote, id: data.id })
             }
-            else{
-                // delete
+            else {
+                if (!data.id) throw Error("Quote ID is required")
+                deleteQuote({ id: data.id })
             }
             setQuote("")
         } catch (error) {

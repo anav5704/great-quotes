@@ -25,7 +25,7 @@ export const QuoteCard = ({ quote }: QuoteCardProps) => {
                     </p>
                     <div className="flex items-center gap-x-3 text-zinc-500 justify-end w-full">
                         <p className="cursor-pointer" onClick={() => onOpen("update", { content: quote.content, id: quote.id })}>Update</p>
-                        <p className="cursor-pointer" onClick={() => { }}>Delete</p>
+                        <p className="cursor-pointer" onClick={() => onOpen("delete", { id: quote.id })}>Delete</p>
                     </div>
                 </div>
             </CardBody>
