@@ -1,19 +1,21 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { currentUser } from "~/app/lib/currentUser"
 import { z } from "zod";
 
 export const quoteRouter = createTRPCRouter({
     createQuote: publicProcedure
-        .input(z.object({
-            content: z.string(),
-            userId: z.string()
-        }))
-        .mutation(async ({ ctx, input }) => {
-            const { content, userId } = input
+    .input(z.object({
+        content: z.string(),
+    }))
+    .mutation(async ({ ctx, input }) => {
+            const user = await currentUser()
+            const { content } = input
+            if(!user) return
 
             const quote = await ctx.db.quote.create({
                 data: {
                     content,
-                    userId,
+                    userId: user.id
                 }
             })
 

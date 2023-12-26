@@ -1,7 +1,7 @@
 import { getServerAuthSession } from "~/server/auth"
 import { db } from "~/server/db"
 
-const currentUser = async () => {
+export const currentUser = async () => {
         const session = await getServerAuthSession()
         if(!session?.user?.email) return
 

@@ -1,10 +1,10 @@
 import { create } from "zustand"
 
 interface ModalStore {
-    type: "add" | "edit" | null,
+    type: "create" | "update" | "delete" | null,
     data: string,
     isOpen: boolean,
-    onOpen: (type: "add" | "edit", data?: string) => void,
+    onOpen: (type: "create" | "update" | "delete", data?: string) => void,
     onClose: () => void,
 }
 

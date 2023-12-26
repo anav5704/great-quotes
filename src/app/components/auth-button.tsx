@@ -2,6 +2,7 @@
 
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/react"
 import { Session } from "node_modules/next-auth/core/types"
+import { PlusCircle, User, LogOut } from "lucide-react"
 import { Button, ButtonGroup } from "@nextui-org/react";
 import { signIn, signOut } from "next-auth/react"
 import { useModal } from "../hooks/use-modal";
@@ -22,15 +23,28 @@ export const AuthButton = ({ session }: AuthButtonProps) => {
                         <Image src={session?.user?.image ?? ""} alt={`Profile image for ${session?.user?.name}`} height={35} width={35} className="rounded-full cursor-pointer" />
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
-                        <DropdownItem onClick={() => onOpen("add")} key="add">Add Quote</DropdownItem>
-                        <DropdownItem key="view">View Profile</DropdownItem>
+                        <DropdownItem onClick={() => onOpen("create")} key="add">
+                            <div className="flex items-center justify-between p-1">
+                            Create Quote
+                            <PlusCircle className="h-5 w-5"/>
+                            </div>
+                            </DropdownItem>
+                        <DropdownItem key="view">
+                            <div className="flex items-center justify-between p-1">
+                            View Profile
+                            <User className="h-5 w-5"/>
+                            </div>
+                            </DropdownItem>
                         <DropdownItem onClick={() => signOut()} key="logout" className="text-danger" color="danger">
+                            <div className="flex items-center justify-between p-1">
                             Log Out
+                            <LogOut className="h-5 w-5"/>
+                            </div>
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             ) : (
-                <Button className="px-6 text-black" radius="sm" size="sm" color="primary" variant="solid" onClick={() => signIn()}>Log In</Button>
+                <Button className="px-6 text-black font-medium" radius="md" size="sm" color="primary" variant="solid" onClick={() => signIn()}>Log In</Button>
             )}
         </div>
     )
