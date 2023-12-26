@@ -31,5 +31,27 @@ export const quoteRouter = createTRPCRouter({
                 }
             })
             return quotes
+        }),
+
+    updateQuote: publicProcedure
+        .input(z.object({
+            content: z.string(),
+            id: z.string()
+        }))
+        .mutation(async ({ ctx, input }) => {
+            const user = await currentUser()
+            const { content, id } = input
+            if (!user) return
+
+            const quote = await db.quote.update({
+                where: {
+                    id
+                },
+                data: {
+                    content
+                }
+            })
+
+            return quote
         })
 });
