@@ -1,9 +1,11 @@
 import { QuoteCard } from "./components/quote-card";
 import QuoteModal from "./components/quote-modal";
 import { api } from "~/trpc/server";
+import { currentUser } from "./lib/currentUser";
 
 export default async function Home() {
     const quotes = await api.quote.getQuotes.query()
+    const user = await currentUser()
 
     return (
         <>
@@ -12,7 +14,7 @@ export default async function Home() {
             </main>
             <main className="grid grid-cols-3 w-3/4 mx-auto gap-10">
                 {quotes.map((quote) => (
-                   <QuoteCard key={quote.id} quote={quote}/>
+                   <QuoteCard key={quote.id} quote={quote} currentUser={user} />
                 ))}
             </main>
         </>
