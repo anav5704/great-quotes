@@ -1,9 +1,9 @@
 "use client"
 
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/react"
-import { Session } from "node_modules/next-auth/core/types"
+import { Button, ButtonGroup, Avatar } from "@nextui-org/react";
 import { PlusCircle, User, LogOut, Heart} from "lucide-react"
-import { Button, ButtonGroup } from "@nextui-org/react";
+import { Session } from "node_modules/next-auth/core/types"
 import { signIn, signOut } from "next-auth/react"
 import { useModal } from "../hooks/use-modal";
 import Image from "next/image"
@@ -20,7 +20,7 @@ export const AuthButton = ({ session }: AuthButtonProps) => {
             {session ? (
                 <Dropdown className="dark text-white mt-6" backdrop="blur">
                     <DropdownTrigger>
-                        <Image src={session?.user?.image ?? ""} alt={`Profile image for ${session?.user?.name}`} height={35} width={35} className="rounded-full cursor-pointer" />
+                        <Avatar isBordered size="sm" src={session?.user?.image ?? ""} alt={`Profile image for ${session?.user?.name}`} className="dark rounded-full cursor-pointer" />
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
                         <DropdownItem onClick={() => onOpen("create")} key="add">

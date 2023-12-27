@@ -1,6 +1,6 @@
 "use client"
 
-import { Heart, MoreVertical, PenLine, Settings, Trash } from "lucide-react"
+import { Heart, PenLine, MoreVertical, Trash } from "lucide-react"
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react"
 import { Like, Quote, User } from "@prisma/client"
 import { useModal } from "~/app/hooks/use-modal"
@@ -27,13 +27,13 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
                     <p className="text-xl mb-5 italic">
                         "{quote.content}"
                     </p>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-end justify-between">
                         <div className="flex items-center gap-x-3">
                             {quote.userId === currentUser?.id && ( 
                             <Dropdown className="dark text-white mt-6" backdrop="blur">
                                 <DropdownTrigger>
                                     <Button isIconOnly className="opacity-0 group-hover:opacity-100 transition">
-                                        <Settings className="h-5 w-5" />
+                                        <MoreVertical className="h-5 w-5" />
                                     </Button>
                                 </DropdownTrigger>
                                 <DropdownMenu aria-label="Static Actions">
@@ -52,7 +52,7 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
                                 </DropdownMenu>
                             </Dropdown>
                             )}
-                            <LikeButton quoteId={quote.id} isLiked={isLiked} />
+                            <LikeButton quoteId={quote.id} isLiked={isLiked} likeCount={quote.likes.length}/>
                         </div>
                         <p className=" text-zinc-500">
                             - {quote.user.name}

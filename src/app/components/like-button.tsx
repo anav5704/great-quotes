@@ -8,27 +8,29 @@ import { api } from '~/trpc/react'
 
 interface LikeButtonProps {
     quoteId: string,
-    isLiked: boolean
+    isLiked: boolean,
+    likeCount: number
 }
 
-export const LikeButton = ({ quoteId, isLiked }: LikeButtonProps) => {
+export const LikeButton = ({ quoteId, isLiked, likeCount }: LikeButtonProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [liked, setLiked] = useState<boolean>(false)
+    const [likes, setLikes] = useState<number>(0)
     const router = useRouter()
 
     const { mutate: toggleLike } = api.quote.toggleLike.useMutation({
         onSuccess: () => {
             setIsLoading(false)
             setLiked(prev => !prev)
+            liked ? setLikes(prev => prev - 1) : setLikes(prev => prev + 1)
+            router.refresh()
         },
-        onError: () => {
-            setLiked(prev => !liked)
-        }
     })
 
     useEffect(() => {
             isLiked && setLiked(isLiked)
-    }, [isLiked])
+            likeCount && setLikes(likeCount)
+    }, [setLikes, setLiked, isLiked, likeCount])
 
     const handleLike = () => {
         setIsLoading(true)
@@ -36,8 +38,9 @@ export const LikeButton = ({ quoteId, isLiked }: LikeButtonProps) => {
     }
 
     return (
-        <Button isLoading={isLoading} onClick={handleLike} isIconOnly className="opacity-0 group-hover:opacity-100 transition" aria-label="Like">
-            <Heart fill={liked ? "white" : "transparent"} className="h-5 w-5 transition" />
+        <Button isIconOnly={likes ===  0} isLoading={isLoading} onClick={handleLike} className="opacity-0 group-hover:opacity-100 transition" aria-label="Like"> 
+            {!isLoading && ( <Heart fill={liked ? "white" : "transparent"} className="h-5 w-5 transition" /> )}
+            {likes > 0 && <p className='ml-2'>{likes}</p> }
         </Button>
     )
 }
