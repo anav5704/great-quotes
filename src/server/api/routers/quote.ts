@@ -1,7 +1,10 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { currentUser } from "~/app/lib/currentUser"
 import { db } from "~/server/db";
+import Cryptr from "cryptr"
 import { z } from "zod";
+
+const cryptr = new Cryptr(process.env.NEXT_URL!)
 
 export const quoteRouter = createTRPCRouter({
     createQuote: publicProcedure
@@ -13,9 +16,11 @@ export const quoteRouter = createTRPCRouter({
             const { content } = input
             if (!user) return
 
+            const encryptedQuote = cryptr.encrypt(content)
+
             const quote = await ctx.db.quote.create({
                 data: {
-                    content,
+                    content: encryptedQuote,
                     userId: user.id
                 }
             })
@@ -44,12 +49,14 @@ export const quoteRouter = createTRPCRouter({
             const { content, id } = input
             if (!user) return
 
+            const encryptedQuote = cryptr.encrypt(content)
+
             const quote = await db.quote.update({
                 where: {
                     id
                 },
                 data: {
-                    content
+                    content: encryptedQuote
                 }
             })
 
@@ -72,14 +79,14 @@ export const quoteRouter = createTRPCRouter({
             return quote
         }),
 
-        toggleLike: publicProcedure
+    toggleLike: publicProcedure
         .input(z.object({
             quoteId: z.string(),
         }))
         .mutation(async ({ ctx, input }) => {
             const user = await currentUser()
             const { quoteId } = input
-            if(!user) return
+            if (!user) return
 
             const isLiked = await db.like.findFirst({
                 where: {

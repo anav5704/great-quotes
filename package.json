@@ -24,6 +24,7 @@
     "@trpc/server": "^10.43.6",
     "@vercel/postgres": "^0.5.1",
     "axios": "^1.6.2",
+    "cryptr": "^6.3.0",
     "framer-motion": "^10.16.16",
     "geist": "^1.2.0",
     "lucide-react": "^0.302.0",
