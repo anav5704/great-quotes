@@ -1,7 +1,7 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { currentUser } from "~/app/lib/currentUser"
-import { z } from "zod";
 import { db } from "~/server/db";
+import { z } from "zod";
 
 export const quoteRouter = createTRPCRouter({
     createQuote: publicProcedure
@@ -27,7 +27,8 @@ export const quoteRouter = createTRPCRouter({
         .query(async ({ ctx }) => {
             const quotes = await db.quote.findMany({
                 include: {
-                    user: true
+                    user: true,
+                    likes: true,
                 }
             })
             return quotes
@@ -69,5 +70,40 @@ export const quoteRouter = createTRPCRouter({
             })
 
             return quote
+        }),
+
+        toggleLike: publicProcedure
+        .input(z.object({
+            quoteId: z.string(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+            const user = await currentUser()
+            const { quoteId } = input
+            if(!user) return
+
+            const isLiked = await db.like.findFirst({
+                where: {
+                    userId: user.id,
+                    quoteId,
+                }
+            })
+
+            if (isLiked) {
+                await db.like.deleteMany({
+                    where: {
+                        userId: user.id,
+                        quoteId
+                    }
+                })
+            }
+
+            else {
+                await db.like.create({
+                    data: {
+                        userId: user.id,
+                        quoteId
+                    }
+                })
+            }
         })
 });
