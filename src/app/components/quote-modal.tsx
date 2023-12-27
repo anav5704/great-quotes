@@ -58,7 +58,7 @@ export default function QuoteModal() {
     }
 
     return (
-        <Modal closeButton={<></>} className="dark text-white" isOpen={isOpen} backdrop="blur">
+        <Modal closeButton={<></>} className="dark text-white" onOpenChange={onClose} isOpen={isOpen} backdrop="blur">
             <ModalContent>
                 <ModalHeader className="flex flex-col gap-1">{action} Quote</ModalHeader>
                 <ModalBody>
@@ -66,7 +66,7 @@ export default function QuoteModal() {
                     {type !== "delete" && (
                         <Input isDisabled={isLoading} value={quote} onChange={(e) => setQuote(e.target.value)} type="email" placeholder="There's no place like home."
                             startContent={
-                                <Quote className="mr-2 text-zinc-500 h-5 w-5" />
+                                <Quote fill="#52525b" className="mr-2 text-zinc-600 h-5 w-5" />
                             }
                         />)}
                 </ModalBody>
