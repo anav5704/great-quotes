@@ -19,7 +19,7 @@ interface QuoteCardProps {
 
 export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
     useEffect(() => {
-        const cryptr = new Cryptr(process.env.NEXT_PUBLIC_URL!)
+        const cryptr = new Cryptr(process.env.NEXT_PUBLIC_CRYPTR!)
         const decryptedQuote = cryptr.decrypt(quote.content)
         setDecryptedQuote(decryptedQuote)
     }, [quote])

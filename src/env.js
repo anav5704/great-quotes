@@ -22,7 +22,7 @@ export const env = createEnv({
             process.env.VERCEL ? z.string() : z.string().url()
         ),
         // Add ` on ID and SECRET if you want to make sure they're not empty
-        NEXT_URL: z.string(),
+        NEXT_CRYPTR: z.string(),
         GOOGLE_CLIENT_ID: z.string(),
         GOOGLE_CLIENT_SECRET: z.string(),
         POSTGRES_URL: z.string(),
@@ -40,7 +40,7 @@ export const env = createEnv({
      * `NEXT_PUBLIC_`.
     */
     client: {
-        NEXT_PUBLIC_URL: z.string(),
+        NEXT_PUBLIC_CRYPTR: z.string(),
     },
 
     /**
@@ -51,8 +51,8 @@ export const env = createEnv({
         NODE_ENV: process.env.NODE_ENV,
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-        NEXT_URL: process.env.NEXT_URL,
-        NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+        NEXT_CRYPTR: process.env.NEXT_CRYPTR,
+        NEXT_PUBLIC_CRYPTR: process.env.NEXT_PUBLIC_CRYPTR,
         GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
         GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
         POSTGRES_URL: process.env.POSTGRES_URL,

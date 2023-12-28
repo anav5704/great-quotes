@@ -4,7 +4,7 @@ import { db } from "~/server/db";
 import Cryptr from "cryptr"
 import { z } from "zod";
 
-const cryptr = new Cryptr(process.env.NEXT_URL!)
+const cryptr = new Cryptr(process.env.NEXT_CRYPTR!)
 
 export const quoteRouter = createTRPCRouter({
     createQuote: publicProcedure
