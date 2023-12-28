@@ -1,3 +1,4 @@
+import { HeaderText } from "~/app/components/header"
 import { QuoteGrid } from "~/app/components/quote-grid"
 import { db } from "~/server/db"
 import { api } from "~/trpc/server"
@@ -15,16 +16,16 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         }
     })
 
-    if(!user) return 
+    if (!user) return
 
     const quotes = await api.quote.getLikedQuotes.query({ userId: user?.id })
-    
+
     return (
-        <>
-            <main className="text-6xl flex pt-[10vh] h-[100vh] flex-col items-center justify-center text-white">
+        <main className="pattern pt-[10vh] min-h-screen">
+            <HeaderText>
                 Quotes You Liked
-            </main>
+            </HeaderText>
             <QuoteGrid quotes={quotes} />
-        </>
+        </main>
     )
 }

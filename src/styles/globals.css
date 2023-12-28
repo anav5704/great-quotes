@@ -5,3 +5,10 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.pattern {
+    background-color: #09090b;
+    opacity: 1;
+    background-image: radial-gradient(#27272a 1.55px, #09090b 1.55px);
+    background-size: 31px 31px;
+ }
