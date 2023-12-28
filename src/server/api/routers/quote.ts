@@ -1,10 +1,19 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { currentUser } from "~/app/lib/currentUser"
-import { db } from "~/server/db";
 import Cryptr from "cryptr"
 import { z } from "zod";
+import { Like, Quote, User } from "@prisma/client";
 
 const cryptr = new Cryptr(process.env.NEXT_CRYPTR!)
+
+const decrypt = (quotes: (Quote & { user: User, likes: Like[] })[]) => {
+    const decryptedQuotes = quotes.map((quote) => {
+        const decryptedContent = cryptr.decrypt(quote.content)
+        return { ...quote, content: decryptedContent }
+    })
+
+    return decryptedQuotes
+}
 
 export const quoteRouter = createTRPCRouter({
     createQuote: publicProcedure
@@ -30,13 +39,60 @@ export const quoteRouter = createTRPCRouter({
 
     getQuotes: publicProcedure
         .query(async ({ ctx }) => {
-            const quotes = await db.quote.findMany({
+            const quotes = await ctx.db.quote.findMany({
                 include: {
                     user: true,
                     likes: true,
                 }
             })
-            return quotes
+
+            return decrypt(quotes)
+        }),
+
+    getQuoteByUserId: publicProcedure
+        .input(z.object({
+            id: z.string()
+        }))
+        .query(async ({ ctx, input }) => {
+            const { id } = input
+
+            const quotes = await ctx.db.quote.findMany({
+                where: {
+                    userId: id
+                },
+                include: {
+                    user: true,
+                    likes: true,
+                }
+            })
+
+            return decrypt(quotes)
+        }),
+
+    getLikedQuotes: publicProcedure
+        .input(z.object({
+            userId: z.string()
+        }))
+        .query(async ({ ctx, input }) => {
+            const { userId } = input
+
+            const liked = await ctx.db.like.findMany({
+                where: {
+                    userId
+                },
+                include: {
+                    quote: {
+                        include: {
+                            user: true,
+                            likes: true
+                        }
+                    }
+                }
+            })
+
+            const quotes = liked.map((like) => like.quote)
+
+            return decrypt(quotes)
         }),
 
     updateQuote: publicProcedure
@@ -51,7 +107,7 @@ export const quoteRouter = createTRPCRouter({
 
             const encryptedQuote = cryptr.encrypt(content)
 
-            const quote = await db.quote.update({
+            const quote = await ctx.db.quote.update({
                 where: {
                     id
                 },
@@ -70,7 +126,7 @@ export const quoteRouter = createTRPCRouter({
         .mutation(async ({ ctx, input }) => {
             const { id } = input
 
-            const quote = await db.quote.delete({
+            const quote = await ctx.db.quote.delete({
                 where: {
                     id
                 }
@@ -88,7 +144,7 @@ export const quoteRouter = createTRPCRouter({
             const { quoteId } = input
             if (!user) return
 
-            const isLiked = await db.like.findFirst({
+            const isLiked = await ctx.db.like.findFirst({
                 where: {
                     userId: user.id,
                     quoteId,
@@ -96,7 +152,7 @@ export const quoteRouter = createTRPCRouter({
             })
 
             if (isLiked) {
-                await db.like.deleteMany({
+                await ctx.db.like.deleteMany({
                     where: {
                         userId: user.id,
                         quoteId
@@ -105,7 +161,7 @@ export const quoteRouter = createTRPCRouter({
             }
 
             else {
-                await db.like.create({
+                await ctx.db.like.create({
                     data: {
                         userId: user.id,
                         quoteId
