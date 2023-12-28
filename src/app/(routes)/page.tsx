@@ -1,12 +1,9 @@
-import { QuoteCard } from "../components/quote-card";
-import QuoteModal from "../components/quote-modal";
-import { api } from "~/trpc/server";
-import { currentUser } from "../lib/currentUser";
-import { QuoteGrid } from "../components/quote-grid";
+import { QuoteGrid } from "../components/quote-grid"
+import QuoteModal from "../components/quote-modal"
+import { api } from "~/trpc/server"
  
 export default async function Home() {
     const quotes = await api.quote.getQuotes.query()
-    const user = await currentUser()
 
     return (
         <>

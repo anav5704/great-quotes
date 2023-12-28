@@ -1,13 +1,11 @@
 "use client"
 
-import { Heart, PenLine, MoreVertical, Trash } from "lucide-react"
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react"
+import { Heart, PenLine, MoreVertical, Trash } from "lucide-react"
 import { Like, Quote, User } from "@prisma/client"
 import { useModal } from "~/app/hooks/use-modal"
-import { currentUser } from "../lib/currentUser"
 import { LikeButton } from "./like-button"
-import Cryptr from "cryptr"
-import { use, useEffect, useState } from "react"
+import { useState } from "react"
 
 interface QuoteCardProps {
     quote: Quote & {
@@ -18,13 +16,6 @@ interface QuoteCardProps {
 }
 
 export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
-    useEffect(() => {
-        const cryptr = new Cryptr(process.env.NEXT_PUBLIC_CRYPTR!)
-        const decryptedQuote = cryptr.decrypt(quote.content)
-        setDecryptedQuote(decryptedQuote)
-    }, [quote])
-    
-    const [decryptedQuote, setDecryptedQuote] = useState<string>("")
     const isLiked = quote.likes.some((like) => like.userId === currentUser?.id)
     const { onOpen } = useModal()
 
@@ -33,7 +24,7 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
             <CardBody className="group">
                 <div>
                     <p className="text-xl mb-5 italic">
-                        "{decryptedQuote}"
+                        "{quote.content}"
                     </p>
                     <div className="flex items-end justify-between">
                         <div className="flex items-center gap-x-3">
@@ -45,7 +36,7 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
                                     </Button>
                                 </DropdownTrigger>
                                 <DropdownMenu aria-label="Static Actions">
-                                    <DropdownItem onClick={() => onOpen("update", { content: decryptedQuote, id: quote.id })} key="edit">
+                                    <DropdownItem onClick={() => onOpen("update", { content: quote.content, id: quote.id })} key="edit">
                                         <div className="flex items-center justify-between p-1">
                                             Edit Quote
                                             <PenLine className="h-5 w-5" />
