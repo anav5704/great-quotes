@@ -3,17 +3,26 @@ import { currentUser } from "~/app/lib/currentUser"
 import Cryptr from "cryptr"
 import { z } from "zod";
 import { Like, Quote, User } from "@prisma/client";
+// import Cryptr from "cryptr"
 
 const cryptr = new Cryptr(process.env.NEXT_CRYPTR!)
+// const cryptr = new Cryptr(process.env.NEXT_CRYPTR!)
 
 const decrypt = (quotes: (Quote & { user: User, likes: Like[] })[]) => {
     const decryptedQuotes = quotes.map((quote) => {
         const decryptedContent = cryptr.decrypt(quote.content)
         return { ...quote, content: decryptedContent }
     })
+// const decrypt = (quotes: (Quote & { user: User, likes: Like[] })[]) => {
+//     const decryptedQuotes = quotes.map((quote) => {
+//         const decryptedContent = cryptr.decrypt(quote.content)
+//         return { ...quote, content: decryptedContent }
+//     })
 
     return decryptedQuotes
 }
+//     return decryptedQuotes
+// }
 
 export const quoteRouter = createTRPCRouter({
     createQuote: publicProcedure
@@ -26,10 +35,13 @@ export const quoteRouter = createTRPCRouter({
             if (!user) return
 
             const encryptedQuote = cryptr.encrypt(content)
+            // const encryptedQuote = cryptr.encrypt(content)
 
             const quote = await ctx.db.quote.create({
                 data: {
                     content: encryptedQuote,
+                    // content: encryptedQuote,
+                    content,
                     userId: user.id
                 }
             })
@@ -47,6 +59,8 @@ export const quoteRouter = createTRPCRouter({
             })
 
             return decrypt(quotes)
+            // return decrypt(quotes)
+            return quotes
         }),
 
     getQuoteByUserId: publicProcedure
@@ -67,6 +81,8 @@ export const quoteRouter = createTRPCRouter({
             })
 
             return decrypt(quotes)
+            // return decrypt(quotes)
+            return quotes
         }),
 
     getLikedQuotes: publicProcedure
@@ -93,6 +109,8 @@ export const quoteRouter = createTRPCRouter({
             const quotes = liked.map((like) => like.quote)
 
             return decrypt(quotes)
+            // return decrypt(quotes)
+            return quotes
         }),
 
     updateQuote: publicProcedure
@@ -106,6 +124,7 @@ export const quoteRouter = createTRPCRouter({
             if (!user) return
 
             const encryptedQuote = cryptr.encrypt(content)
+            // const encryptedQuote = cryptr.encrypt(content)
 
             const quote = await ctx.db.quote.update({
                 where: {
@@ -113,6 +132,8 @@ export const quoteRouter = createTRPCRouter({
                 },
                 data: {
                     content: encryptedQuote
+                    // content: encryptedQuote
+                    content
                 }
             })
 
