@@ -12,7 +12,7 @@ const cards = [1, 2, 3]
 
 interface LoadQuotesProps {
     user: User,
-    type: "all" | "liked" |  "user"
+    type: "all" | "liked" | "user"
 }
 
 export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
@@ -33,11 +33,11 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
 
             if (data && data?.length < 6) setLoadedAll(true)
 
-            setQuotes((prev) => [...prev, ...(data) || []])
+            setQuotes((prev) => [...prev, ...(data) ?? []])
             page++
         }
 
-        if (inView && !loadedAll) fetchQuotes()
+        if (inView && !loadedAll) void fetchQuotes()
     }, [inView])
 
     return (
