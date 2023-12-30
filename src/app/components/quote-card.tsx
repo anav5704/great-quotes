@@ -6,6 +6,7 @@ import { Like, Quote, User } from "@prisma/client"
 import { useModal } from "~/app/hooks/use-modal"
 import { LikeButton } from "./like-button"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 interface QuoteCardProps {
     quote: Quote & {
@@ -18,11 +19,12 @@ interface QuoteCardProps {
 export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
     const isLiked = quote.likes.some((like) => like.userId === currentUser?.id)
     const { onOpen } = useModal()
+    const router = useRouter()
 
     return (
         <Card className="dark">
             <CardBody className="group">
-                <div>
+                <div className="flex flex-col justify-between h-full">
                     <p className="text-xl mb-5 italic">
                         "{quote.content}"
                     </p>
@@ -53,7 +55,7 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
                             )}
                             <LikeButton quoteId={quote.id} isLiked={isLiked} likeCount={quote.likes.length}/>
                         </div>
-                        <p className=" text-zinc-500">
+                        <p onClick={() => router.push(`/profile/${quote.userId}`)} className=" text-zinc-500 cursor-pointer">
                             - {quote.user.name}
                         </p>
                     </div>

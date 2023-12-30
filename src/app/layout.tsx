@@ -4,9 +4,10 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { cookies } from "next/headers";
 
+import { ModalProvider } from "./providers/modal-provider";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Navbar } from "./components/navbar";
-import { ModalProvider } from "./providers/modal-provider";
+import { Footer } from "./components/footer";
 
 export const metadata = {
     title: "Great Quotes",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <ModalProvider />
                     <Navbar />
                     {children}
+                    <Footer />
                 </TRPCReactProvider>
             </body>
         </html>

@@ -40,7 +40,7 @@ model Like {
   userId  String
   user    User   @relation(fields: [userId], references: [id], name: "LikeToUser")
   quoteId String
-  quote   Quote  @relation(fields: [quoteId], references: [id], name: "LikeToQuote")
+  quote   Quote  @relation(fields: [quoteId], references: [id], name: "LikeToQuote", onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
