@@ -43,13 +43,13 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
     return (
         <>
             {quotes.length > 0 && (
-                <main className="grid grid-cols-1 md:grid-cols-3 mx-auto md:w-3/4 w-4/5 gap-10 pb-10">
+                <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto md:w-3/4 w-4/5 gap-10 pb-10">
                     {quotes.map((quote) => (
                         <QuoteCard key={quote.id} quote={quote} currentUser={user} />
                     ))}
                 </main>)}
             {!loadedAll && (
-                <div ref={ref} className="dark grid grid-cols-1 md:grid-cols-3 w-4/5  md:w-3/4  mx-auto gap-10 pb-10">
+                <div ref={ref} className="skeleton-holder dark grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-4/5  md:w-3/4  mx-auto gap-10 pb-10">
                     {cards.map(((card) => (
                         <Card key={card} className="space-y-5 p-4 col-span-1" radius="lg">
                             <Skeleton className="rounded-lg">

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+ .skeleton-holder {
+    @apply [&>*:nth-child(3)]:sm:hidden [&>*:nth-child(3)]:lg:block [&>*:nth-child(2)]:sm:hidden [&>*:nth-child(2)]:md:block
+ }
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
