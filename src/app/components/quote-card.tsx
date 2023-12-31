@@ -1,12 +1,11 @@
 "use client"
 
 import { Button, Card, CardBody, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react"
-import { Heart, PenLine, MoreVertical, Trash } from "lucide-react"
-import { Like, Quote, User } from "@prisma/client"
+import { PenLine, MoreVertical, Trash } from "lucide-react"
+import type { Like, Quote, User } from "@prisma/client"
 import { useModal } from "~/app/hooks/use-modal"
-import { LikeButton } from "./like-button"
-import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { LikeButton } from "./like-button"
 
 interface QuoteCardProps {
     quote: Quote & {

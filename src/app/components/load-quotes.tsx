@@ -1,7 +1,7 @@
 "use client"
 
+import type { Like, Quote, User } from "@prisma/client"
 import { useInView } from "react-intersection-observer"
-import { Like, Quote, User } from "@prisma/client"
 import { Card, Skeleton } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { QuoteCard } from "./quote-card"
@@ -51,7 +51,7 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
             {!loadedAll && (
                 <div ref={ref} className="dark grid grid-cols-1 md:grid-cols-3 w-4/5  md:w-3/4  mx-auto gap-10 pb-10">
                     {cards.map(((card) => (
-                        <Card className="space-y-5 p-4 col-span-1" radius="lg">
+                        <Card key={card} className="space-y-5 p-4 col-span-1" radius="lg">
                             <Skeleton className="rounded-lg">
                                 <div className="h-24 rounded-lg bg-default-300"></div>
                             </Skeleton>

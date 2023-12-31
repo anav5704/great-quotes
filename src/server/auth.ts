@@ -1,5 +1,4 @@
 import { getServerSession, type DefaultSession, type NextAuthOptions } from "next-auth";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "~/env";
@@ -33,7 +32,7 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
     callbacks: {
-        async session({ session, token }) {
+        async session({ session }) {
             try {
                 if (!session.user.name) throw Error("Name is required")
                 if (!session.user.email) throw Error("Email is required")
@@ -61,7 +60,6 @@ export const authOptions: NextAuthOptions = {
             }
         }
     },
-    // adapter: PrismaAdapter(db),
     providers: [
         GoogleProvider({
             clientId: env.GOOGLE_CLIENT_ID,

@@ -1,7 +1,7 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { Like, Quote, User } from "@prisma/client";
 import { currentUser } from "~/app/lib/currentUser"
-import { z } from "zod";
+import { z } from "zod"
+
 // import Cryptr from "cryptr"
 
 // const cryptr = new Cryptr(process.env.NEXT_CRYPTR!)

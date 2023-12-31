@@ -1,9 +1,10 @@
-import { HeaderText } from "../components/header";
 import { LoadQuotes } from "../components/load-quotes";
 import { QuoteGrid } from "../components/quote-grid"
-import QuoteModal from "../components/quote-modal"
+import { HeaderText } from "../components/header";
 import { currentUser } from "../lib/currentUser";
 import { api } from "~/trpc/server"
+
+export const revalidate = 0
 
 export default async function Home() {
     const quotes = await api.quote.getQuotes.query({ page: 0 })

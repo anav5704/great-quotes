@@ -1,9 +1,6 @@
-import { useInView } from "react-intersection-observer"
-import { Like, Quote, User } from "@prisma/client"
+import type { Like, Quote, User } from "@prisma/client"
 import { currentUser } from "../lib/currentUser"
-import { useEffect, useState } from "react"
 import { QuoteCard } from "./quote-card"
-import { api } from "~/trpc/react"
 
 interface QuoteGridProps {
     quotes: (Quote & {

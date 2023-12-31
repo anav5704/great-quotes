@@ -1,8 +1,10 @@
 import { HeaderText } from "~/app/components/header"
 import { LoadQuotes } from "~/app/components/load-quotes"
 import { QuoteGrid } from "~/app/components/quote-grid"
-import { db } from "~/server/db"
 import { api } from "~/trpc/server"
+import { db } from "~/server/db"
+
+export const revalidate = 0
 
 interface ProfilePageProps {
     params: {

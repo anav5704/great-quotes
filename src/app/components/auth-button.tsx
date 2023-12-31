@@ -1,14 +1,13 @@
 "use client"
 
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/react"
-import { Button, ButtonGroup, Avatar } from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react"
 import { PlusCircle, User as UserIcon, LogOut, Heart} from "lucide-react"
-import { Session } from "node_modules/next-auth/core/types"
+import type { Session } from "node_modules/next-auth/core/types"
+import { Button, Avatar } from "@nextui-org/react";
 import { signIn, signOut } from "next-auth/react"
 import { useModal } from "../hooks/use-modal";
-import Image from "next/image"
 import { useRouter } from "next/navigation";
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 
 interface AuthButtonProps {
     session: Session | null,
