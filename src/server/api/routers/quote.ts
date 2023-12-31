@@ -18,7 +18,7 @@ import { z } from "zod"
 export const quoteRouter = createTRPCRouter({
     createQuote: publicProcedure
         .input(z.object({
-            content: z.string(),
+            content: z.string().min(1, { message: "Bro at least type the quote out 🤦" }).max(100, { message: "That's not a quote, that's an essay 💀" }),
         }))
         .mutation(async ({ ctx, input }) => {
             const user = await currentUser()
@@ -125,7 +125,7 @@ export const quoteRouter = createTRPCRouter({
 
     updateQuote: publicProcedure
         .input(z.object({
-            content: z.string(),
+            content: z.string().min(1, { message: "Bro at least type the quote out 🤦" }).max(100, { message: "That's not a quote, that's an essay 💀" }),
             id: z.string()
         }))
         .mutation(async ({ ctx, input }) => {

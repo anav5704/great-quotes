@@ -52,7 +52,7 @@ export const AuthButton = ({ session, user }: AuthButtonProps) => {
                     </DropdownMenu>
                 </Dropdown>
             ) : (
-                <Button className="px-4 text-black text-md" radius="sm" color="primary" variant="solid" onClick={() => signIn()}>Sign In</Button>
+                <Button className="p-4 text-black text-md font-medium" radius="full" size="sm" color="primary" variant="solid" onClick={() => signIn()}>Sign In</Button>
             )}
         </div>
     )

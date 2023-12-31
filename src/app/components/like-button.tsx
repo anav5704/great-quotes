@@ -38,7 +38,7 @@ export const LikeButton = ({ quoteId, isLiked, likeCount }: LikeButtonProps) => 
     }
 
     return (
-        <Button isIconOnly={likes ===  0} isLoading={isLoading} onClick={handleLike} className="opacity-0 group-hover:opacity-100 transition" aria-label="Like"> 
+        <Button isIconOnly={likes ===  0} isLoading={isLoading} onClick={handleLike} className="md:opacity-0 group-hover:opacity-100 transition" aria-label="Like"> 
             {!isLoading && ( <Heart fill={liked ? "white" : "transparent"} className="h-5 w-5 transition" /> )}
             {likes > 0 && <p className='ml-2'>{likes}</p> }
         </Button>

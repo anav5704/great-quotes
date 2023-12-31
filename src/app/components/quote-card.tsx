@@ -32,7 +32,7 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
                             {quote.userId === currentUser?.id && ( 
                             <Dropdown className="dark text-white mt-6" backdrop="blur">
                                 <DropdownTrigger>
-                                    <Button isIconOnly className="opacity-0 group-hover:opacity-100 transition">
+                                    <Button isIconOnly className="md:opacity-0 group-hover:opacity-100 transition">
                                         <MoreVertical className="h-5 w-5" />
                                     </Button>
                                 </DropdownTrigger>
