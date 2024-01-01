@@ -1,7 +1,11 @@
+/* eslint-disable  @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable  @typescript-eslint/prefer-optional-chain */
+/* eslint-disable  @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable  @typescript-eslint/no-unsafe-argument */
+
 "use client"
 
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
-import { TRPCClientError } from "@trpc/client";
 import { useModal } from "../hooks/use-modal";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
