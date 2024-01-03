@@ -1,7 +1,7 @@
 "use client"
 
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react"
-import { PlusCircle, User as UserIcon, LogOut, Heart} from "lucide-react"
+import { PlusCircle, User as UserIcon, LogOut, Heart, Crown } from "lucide-react"
 import type { Session } from "node_modules/next-auth/core/types"
 import { Button, Avatar } from "@nextui-org/react";
 import { signIn, signOut } from "next-auth/react"
@@ -25,21 +25,28 @@ export const AuthButton = ({ session, user }: AuthButtonProps) => {
                     <DropdownTrigger>
                         <Avatar isBordered size="sm" src={session?.user?.image ?? ""} alt={`Profile image for ${session?.user?.name}`} className="dark rounded-full cursor-pointer" />
                     </DropdownTrigger>
-                    <DropdownMenu aria-label="Static Actions">
+                    <DropdownMenu disabledKeys={["leaderboard"]} aria-label="Static Actions">
                         <DropdownItem onClick={() => onOpen("create")} key="add">
                             <div className="flex items-center justify-between p-1">
                                 Create Quote
                                 <PlusCircle className="h-5 w-5" />
                             </div>
                         </DropdownItem>
-                         <DropdownItem key="view" onClick={() => router.push(`/liked/${user?.id}`)}>
+                        <DropdownItem key="view" onClick={() => router.push(`/liked/${user?.id}`)}>
                             <div className="flex items-center justify-between p-1">
                                 Liked Quotes
                                 <Heart className="h-5 w-5" />
                             </div>
-                        </DropdownItem><DropdownItem key="view" onClick={() => router.push(`/profile/${user?.id}`)}>
+                        </DropdownItem>
+                        <DropdownItem key="leaderboard">
                             <div className="flex items-center justify-between p-1">
-                                 View Profile
+                                Leaderboards
+                                <Crown className="h-5 w-5" />
+                            </div>
+                        </DropdownItem>
+                        <DropdownItem key="view" onClick={() => router.push(`/profile/${user?.id}`)}>
+                            <div className="flex items-center justify-between p-1">
+                                View Profile
                                 <UserIcon className="h-5 w-5" />
                             </div>
                         </DropdownItem>
@@ -52,7 +59,8 @@ export const AuthButton = ({ session, user }: AuthButtonProps) => {
                     </DropdownMenu>
                 </Dropdown>
             ) : (
-                <Button className="p-4 text-black text-md font-medium" radius="full" size="sm" color="primary" variant="solid" onClick={() => signIn()}>Sign In</Button>
+                <Button className="p-4 text-black text-md" radius="full" size="sm" color="primary" variant="solid" onClick={() => signIn("google")}>Sign In</Button>
+
             )}
         </div>
     )

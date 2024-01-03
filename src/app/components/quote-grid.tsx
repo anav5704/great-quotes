@@ -1,6 +1,7 @@
 import type { Like, Quote, User } from "@prisma/client"
 import { currentUser } from "../lib/currentUser"
 import { QuoteCard } from "./quote-card"
+import { Alert } from "./alert"
 
 interface QuoteGridProps {
     quotes: (Quote & {

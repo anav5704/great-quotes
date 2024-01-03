@@ -3,7 +3,7 @@ import { QuoteGrid } from "../components/quote-grid"
 import { HeaderText } from "../components/header";
 import { currentUser } from "../lib/currentUser";
 import { api } from "~/trpc/server"
-import { WelcomeAlert } from "../components/welcome-alert";
+import { Alert } from "../components/alert";
 
 export const revalidate = 0
 
@@ -13,10 +13,10 @@ export default async function Home() {
 
     return (
         <main className={`${!user && "grid place-content-center"} pattern pt-[10vh] min-h-[90vh]`}>
-            <HeaderText noMargin={user ? false : true}>
+            <HeaderText noMargin={!!!user}>
                 Great  quotes from <br /> even better people
             </HeaderText>
-            {!user && ( <WelcomeAlert />  )}
+            {!user && ( <Alert title="welcome!" message="Please sign in to continue." redirect />  )}
             {user && (<QuoteGrid quotes={quotes} />)}
             {user && (<LoadQuotes user={user} type="all" />)}
         </main>

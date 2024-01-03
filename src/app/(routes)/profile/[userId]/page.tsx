@@ -2,6 +2,7 @@
 import { LoadQuotes } from "~/app/components/load-quotes"
 import { QuoteGrid } from "~/app/components/quote-grid"
 import { HeaderText } from "~/app/components/header"
+import { Alert } from "~/app/components/alert"
 import { api } from "~/trpc/server"
 import { db } from "~/server/db"
 
@@ -33,15 +34,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     // })
 
     return (
-        <main className="pattern pt-[10vh] min-h-[90vh]">
-            <HeaderText>
+        <main className={`${!quotes.length && "grid place-content-center"} pattern pt-[10vh] min-h-[90vh]`}>
+            <HeaderText noMargin={quotes.length === 0}>
                 Quotes by {user?.name}
             </HeaderText>
-            {/* <br /> */}
-            {/* <LikeCounter likes={likes} /> */}
-            <QuoteGrid quotes={quotes} />
-            <LoadQuotes  user={user} type="user" />
+            {!quotes.length && (<Alert title="oops!" message={`${user?.name} hasn't created any quotes`} />)}
+            {quotes.length > 0 && (<QuoteGrid quotes={quotes} />)}
+            {quotes.length === 6 && (<LoadQuotes user={user} type="user" />)}
         </main>
-
     )
 }
