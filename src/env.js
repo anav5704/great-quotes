@@ -25,13 +25,6 @@ export const env = createEnv({
         NEXT_CRYPTR: z.string(),
         GOOGLE_CLIENT_ID: z.string(),
         GOOGLE_CLIENT_SECRET: z.string(),
-        POSTGRES_URL: z.string(),
-        POSTGRES_PRISMA_URL: z.string(),
-        POSTGRES_URL_NON_POOLING: z.string(),
-        POSTGRES_USER: z.string(),
-        POSTGRES_HOST: z.string(),
-        POSTGRES_PASSWORD: z.string(),
-        POSTGRES_DATABASE: z.string(),
         DATABASE_URL: z.string(),
         DIRECT_URL: z.string(),
     },
@@ -41,9 +34,7 @@ export const env = createEnv({
      * isn't built with invalid env vars. To expose them to the client, prefix them with
      * `NEXT_PUBLIC_`.
     */
-    client: {
-        NEXT_PUBLIC_CRYPTR: z.string(),
-    },
+    client: {},
 
     /**
     * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
@@ -54,17 +45,9 @@ export const env = createEnv({
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         NEXTAUTH_URL: process.env.NEXTAUTH_URL,
         NEXT_CRYPTR: process.env.NEXT_CRYPTR,
-        NEXT_PUBLIC_CRYPTR: process.env.NEXT_PUBLIC_CRYPTR,
         GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
         GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-        POSTGRES_URL: process.env.POSTGRES_URL,
-        POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
-        POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
-        POSTGRES_USER: process.env.POSTGRES_USER,
-        POSTGRES_HOST: process.env.POSTGRES_HOST,
-        POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
-        POSTGRES_DATABASE: process.env.POSTGRES_DATABASE,
-         DATABASE_URL: process.env. DATABASE_URL,
+        DATABASE_URL: process.env.DATABASE_URL,
         DIRECT_URL: process.env.DIRECT_URL,
     },
     /**
