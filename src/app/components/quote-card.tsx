@@ -20,6 +20,10 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
     const { onOpen } = useModal()
     const router = useRouter()
 
+    const names = quote.user.name.split(' ');
+    const capitalizedWords = names.map(name => name.charAt(0).toUpperCase() + name.slice(1));
+    const name = capitalizedWords.join(' ');
+
     return (
         <Card className="dark">
             <CardBody className="group">
@@ -55,7 +59,7 @@ export const QuoteCard = ({ quote, currentUser }: QuoteCardProps) => {
                             <LikeButton quoteId={quote.id} isLiked={isLiked} likeCount={quote.likes.length}/>
                         </div>
                         <p onClick={() => router.push(`/profile/${quote.userId}`)} className=" text-zinc-500 cursor-pointer">
-                            - {quote.user.name}
+                            - {name}
                         </p>
                     </div>
                 </div>
