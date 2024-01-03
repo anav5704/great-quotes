@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,9 +10,8 @@ datasource db {
 
 model User {
   id     String  @id @default(uuid())
-  name   String
-  email  String
-  image  String
+  name   String  @unique
+  email  String  @unique
   quotes Quote[] @relation(name: "QuoteToUser")
   likes  Like[]  @relation(name: "LikeToUser")
 
@@ -26,7 +22,7 @@ model Quote {
   id      String @id @default(uuid())
   content String
   userId  String
-  user    User   @relation(fields: [userId], references: [id], name: "QuoteToUser")
+  user    User   @relation(fields: [userId], references: [id], name: "QuoteToUser", onDelete: Cascade)
   likes   Like[] @relation(name: "LikeToQuote")
 
   createdAt DateTime @default(now())
@@ -38,7 +34,7 @@ model Quote {
 model Like {
   id      String @id @default(uuid())
   userId  String
-  user    User   @relation(fields: [userId], references: [id], name: "LikeToUser")
+  user    User   @relation(fields: [userId], references: [id], name: "LikeToUser", onDelete: Cascade)
   quoteId String
   quote   Quote  @relation(fields: [quoteId], references: [id], name: "LikeToQuote", onDelete: Cascade)
 

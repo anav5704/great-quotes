@@ -40,7 +40,8 @@ export const authOptions: NextAuthOptions = {
 
                 const user = await db.user.findFirst({
                     where: {
-                        email: session.user.email
+                        email: session?.user?.email,
+                        name: session?.user?.name
                     }
                 })
 
@@ -49,10 +50,10 @@ export const authOptions: NextAuthOptions = {
                         data: {
                             name: session?.user?.name,
                             email: session?.user?.email,
-                            image: session?.user?.image
                         }
                     })
                 }
+
             } catch (error) {
                 console.log("Auth error: ", error)
             } finally {
