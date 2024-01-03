@@ -18,7 +18,7 @@ export default async function Home() {
             </HeaderText>
             {!user && ( <Alert title="welcome!" message="Please sign in to continue." redirect />  )}
             {user && (<QuoteGrid quotes={quotes} />)}
-            {user && (<LoadQuotes user={user} type="all" />)}
+            {user && quotes.length === 6 && (<LoadQuotes user={user} type="all" />)}
         </main>
     );
 }
