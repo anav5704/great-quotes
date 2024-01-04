@@ -17,7 +17,7 @@ interface LoadQuotesProps {
 
 export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
     const { refetch: refetchAll } = api.quote.getQuotes.useQuery({ page })
-    const { refetch: refetchLiked } = api.quote.getLikedQuotes.useQuery({ userId: user.id, page })
+    const { refetch: refetchLiked } = api.like.getLikedQuotes.useQuery({ userId: user.id, page })
     const { refetch: refetchUser } = api.quote.getQuoteByUserId.useQuery({ id: user.id, page })
     const { ref, inView } = useInView()
     const [loadedAll, setLoadedAll] = useState<boolean>(false)
