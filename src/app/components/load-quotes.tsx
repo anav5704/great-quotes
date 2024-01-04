@@ -44,8 +44,8 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
         <>
             {quotes.length > 0 && (
                 <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto md:w-3/4 w-4/5 gap-10 pb-10">
-                    {quotes.map((quote) => (
-                        <QuoteCard key={quote.id} quote={quote} currentUser={user} />
+                    {quotes.map((quote, index) => (
+                        <QuoteCard key={quote.id} quote={quote} currentUser={user} index={index}/>
                     ))}
                 </main>)}
             {!loadedAll && (
@@ -53,11 +53,11 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
                     {cards.map(((card) => (
                         <Card key={card} className="space-y-5 p-4 col-span-1" radius="lg">
                             <Skeleton className="rounded-lg">
-                                <div className="h-24 rounded-lg bg-default-300"></div>
+                                <div className="h-24 rounded-lg bg-default-300"/>
                             </Skeleton>
                             <div className="flex justify-end">
                                 <Skeleton className="w-2/5 rounded-lg mt-2">
-                                    <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                                    <div className="h-3 w-2/5 rounded-lg bg-default-300"/>
                                 </Skeleton>
                             </div>
                         </Card>

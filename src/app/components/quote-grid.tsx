@@ -14,8 +14,8 @@ const user = await currentUser()
 
     return (
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-auto md:w-3/4 w-4/5 gap-10 pb-10">
-            {quotes.map((quote) => (
-                <QuoteCard key={quote.id} quote={quote} currentUser={user} />
+            {quotes.map((quote, index) => (
+                <QuoteCard key={quote.id} quote={quote} currentUser={user} index={index}/>
             ))}
         </main>
     )
