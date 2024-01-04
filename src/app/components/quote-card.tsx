@@ -37,7 +37,7 @@ export const QuoteCard = ({ quote, currentUser, index }: QuoteCardProps) => {
             initial="hidden"
             animate="visible"
             transition={{
-                delay: index * 0.15,
+                delay: (index * 0.25) % 1.5,
                 ease: "easeInOut",
                 duration: 0.5,
             }}

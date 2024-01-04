@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import { QuoteCard } from "./quote-card"
 import { api } from "~/trpc/react"
 
-let page = 1
 const cards = [1, 2, 3]
 
 interface LoadQuotesProps {
@@ -16,6 +15,7 @@ interface LoadQuotesProps {
 }
 
 export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
+    const [page, setPage] = useState<number>(1)
     const { refetch: refetchAll } = api.quote.getQuotes.useQuery({ page })
     const { refetch: refetchLiked } = api.like.getLikedQuotes.useQuery({ userId: user.id, page })
     const { refetch: refetchUser } = api.quote.getQuoteByUserId.useQuery({ id: user.id, page })
@@ -34,7 +34,7 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
             if (data && data?.length < 6) setLoadedAll(true)
 
             setQuotes((prev) => [...prev, ...(data) ?? []])
-            page++
+            setPage((prev) => prev++)
         }
 
         if (inView && !loadedAll) void fetchQuotes()
@@ -45,7 +45,7 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
             {quotes.length > 0 && (
                 <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto md:w-3/4 w-4/5 gap-10 pb-10">
                     {quotes.map((quote, index) => (
-                        <QuoteCard key={quote.id} quote={quote} currentUser={user} index={index}/>
+                        <QuoteCard key={quote.id} quote={quote} currentUser={user} index={index} />
                     ))}
                 </main>)}
             {!loadedAll && (
