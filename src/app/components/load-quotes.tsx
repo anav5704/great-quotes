@@ -34,7 +34,7 @@ export const LoadQuotes = ({ user, type }: LoadQuotesProps) => {
             if (data && data?.length < 6) setLoadedAll(true)
 
             setQuotes((prev) => [...prev, ...(data) ?? []])
-            setPage((prev) => prev++)
+            setPage(prev => prev + 1)
         }
 
         if (inView && !loadedAll) void fetchQuotes()
