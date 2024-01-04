@@ -22,7 +22,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
     if (!user) return
 
-    const quotes = await api.quote.getLikedQuotes.query({ userId: user?.id, page: 0 })
+    const quotes = await api.like.getLikedQuotes.query({ userId: user?.id, page: 0 })
 
     return (
         <main className={`${!quotes.length && "grid place-content-center"} pattern pt-[10vh] min-h-[90vh]`}>

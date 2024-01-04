@@ -18,7 +18,7 @@ export const LikeButton = ({ quoteId, isLiked, likeCount }: LikeButtonProps) => 
     const [likes, setLikes] = useState<number>(0)
     const router = useRouter()
 
-    const { mutate: toggleLike } = api.quote.toggleLike.useMutation({
+    const { mutate: toggleLike } = api.like.toggleLike.useMutation({
         onSuccess: () => {
             setIsLoading(false)
             setLiked(prev => !prev)

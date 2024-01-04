@@ -8,7 +8,7 @@ export const Navbar = async () => {
     const user = await currentUser()
 
     return (
-        <nav className="z-10 bg-zinc-950 h-[10vh] text-white border-b border-zinc-800 flex items-center justify-between fixed px-10 lg:px-56 w-full">
+        <nav className="z-50 bg-zinc-950 h-[10vh] text-white border-b border-zinc-800 flex items-center justify-between fixed px-10 lg:px-56 w-full">
             <NavLogo />
             <AuthButton session={session} user={user} />
         </nav>
