@@ -1,5 +1,7 @@
 import "~/styles/globals.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { cookies } from "next/headers";
@@ -21,6 +23,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-zinc-950`}>
                 <TRPCReactProvider cookies={cookies().toString()}>
                     <ModalProvider />
+                    <SpeedInsights/>
+                    <Analytics/>
                     <Navbar />
                     {children}
                     <Footer />
