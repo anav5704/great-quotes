@@ -1,17 +1,11 @@
-import classNames from "classnames"
-
 interface HeaderTextProps {
-    children: React.ReactNode,
-    noMargin?: boolean,
+    children: React.ReactNode
 }
 
-export const Header = ({ children, noMargin }: HeaderTextProps) => {
+export const Header = ({ children }: HeaderTextProps) => {
     return (
-        <div className={classNames(
-            !noMargin && "py-[16vh]",
-            "text-gradient-white font-black tracking-normal text-3xl md:text-6xl flex flex-col items-center justify-center"
-        )}>
+        <h1 className="text-gradient-white font-bold tracking-tight text-3xl md:text-6xl">
             {children}
-        </div>
+        </h1>
     )
-} 
+}
