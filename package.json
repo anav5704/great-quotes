@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "next lint",
         "format": "npx prettier --write .",
-        "test": "jest"
+        "test": "jest",
+        "prisma-new": "npx prisma format && npx prisma generate && npx prisma db push"
     },
     "dependencies": {
         "@nextui-org/button": "^2.0.31",
