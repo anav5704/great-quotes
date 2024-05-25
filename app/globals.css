@@ -23,12 +23,3 @@
         @apply bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent;
     }
 }
-
-@layer utilities {
-    .pattern {
-        opacity: 1;
-        background-color: #09090b;
-        background-size: 31px 31px;
-        background-image: radial-gradient(#27272a 1.55px, #09090b 1.55px);
-    }
-}
