@@ -1,24 +1,19 @@
-import { Header } from '@/components';
-import { Github } from '@/public/icons/github';
-import { Google } from '@/public/icons/google';
-import { Button } from '@nextui-org/button';
-import Image from 'next/image';
+import { Header, SignIn } from '@/components'
+import { currentUser } from '@/lib/user'
+import { Github } from '@/public/icons/github'
 
-export const revalidate = 0;
+import { Button } from '@nextui-org/button'
+import { redirect } from 'next/navigation'
 
 export default async function Home() {
+    const user = await currentUser()
+    if (user) return redirect("/quotes")
+
     return (
         <main
             id="hero"
-            className="relative pt-[10vh] h-[90vh] flex flex-col items-center justify-center gap-8"
+            className="pt-[10vh] h-[90vh] flex flex-col items-center justify-center gap-8"
         >
-            <Image
-                fill
-                quality={100}
-                src="/league.png"
-                alt="Image of the boys"
-                className="absolute grayscale opacity-5 object-cover"
-            />
             <Header>Great Quotes From Great People.</Header>
             <h3 className="text-2xl text-zinc-500 text-center">
                 Friends talk. Friends talk{' '}
@@ -29,18 +24,11 @@ export default async function Home() {
                 <br />
                 And once in a while, they say something that{' '}
                 <span className="text-white">
-                    stays for life.
+                    sticks for life.
                 </span>
             </h3>
             <div className="space-x-5">
-                <Button
-                    size="lg"
-                    radius="lg"
-                    endContent={<Google />}
-                    className="text-lg"
-                >
-                    Create Free Account
-                </Button>
+                <SignIn />
                 <Button
                     size="lg"
                     radius="lg"
@@ -51,5 +39,5 @@ export default async function Home() {
                 </Button>
             </div>
         </main>
-    );
+    )
 }
