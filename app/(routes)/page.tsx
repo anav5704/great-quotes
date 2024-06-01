@@ -14,7 +14,7 @@ export default async function Home() {
             id="hero"
             className="pt-[10vh] h-[90vh] flex flex-col items-center justify-center gap-8"
         >
-            <Header>Great Quotes From Great People.</Header>
+            <Header className='text-center'>Great Quotes From Great People.</Header>
             <h3 className="text-2xl text-zinc-500 text-center">
                 Friends talk. Friends talk{' '}
                 <span className="text-white">
