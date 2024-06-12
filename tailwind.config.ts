@@ -2,12 +2,12 @@ import { nextui } from '@nextui-org/theme';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-    content: [
-        './pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './components/**/*.{js,ts,jsx,tsx,mdx}',
-        './app/**/*.{js,ts,jsx,tsx,mdx}',
-        './node_modules/@nextui-org/theme/dist/components/(button|ripple|spinner).js',
-    ],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/components/(avatar|button|dropdown|input|modal|spinner|ripple|menu|divider|popover).js"
+  ],
     theme: {
         extend: {
             backgroundImage: {

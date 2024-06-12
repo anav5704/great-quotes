@@ -1,31 +1,32 @@
-import { Footer, Navbar } from '@/components';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from 'next';
-import { Karla } from 'next/font/google';
-
-import './globals.css';
+import { Footer, Navbar } from '@/components'
+import { Analytics } from '@vercel/analytics/react'
+import { ModalProvider } from "@/providers/modal-provider"
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import type { Metadata } from 'next'
+import { Karla } from 'next/font/google'
+import { SessionProvider } from "next-auth/react"
+import './globals.css'
 
 const font = Karla({
     subsets: ['latin'],
     weight: ['400', '500', '600', '700', '800'],
-});
+})
 
 export const metadata: Metadata = {
     title: 'Great Quotes',
     description:
         'A collection of fun and inspirational quotes.',
-};
+}
 
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: React.ReactNode
 }>) {
     return (
         <html lang="en">
             <body className={font.className}>
-                {/* <ModalProvider /> */}
+                <ModalProvider />
                 <SpeedInsights />
                 <Analytics />
                 <Navbar />
@@ -33,5 +34,5 @@ export default function RootLayout({
                 <Footer />
             </body>
         </html>
-    );
+    )
 }
