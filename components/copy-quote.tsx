@@ -1,19 +1,18 @@
 "use client"
 
-import { useOrigin } from "@/hooks/use-origin"
-import { Link, Check } from "lucide-react"
+import { Check, Copy } from "lucide-react"
 import { useState } from "react"
 
 interface CopyQuoteProps {
-    id: string
+    content: string
+    author: string
 }
 
-export const CopyQuote = ({ id }: CopyQuoteProps) => {
+export const CopyQuote = ({ content, author }: CopyQuoteProps) => {
     const [copied, setCopied] = useState(false)
-    const origin = useOrigin()
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(origin + "/quotes/" + id)
+        navigator.clipboard.writeText(content + " - " + author)
         setCopied(true)
 
         setTimeout(() => {
@@ -24,9 +23,9 @@ export const CopyQuote = ({ id }: CopyQuoteProps) => {
     return (
         <button
             onClick={handleCopy}
-            className="grid place-content-center p-5 opacity-0 group-hover:opacity-100 transition"
+            className="grid place-content-center p-5 opacity-100 group-hover:opacity-100 transition"
         >
-            {copied ? <Check size={20} /> : <Link size={20} />}
+            {copied ? <Check size={20} /> : <Copy size={20} />}
         </button>
     )
 }

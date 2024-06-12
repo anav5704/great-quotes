@@ -1,7 +1,9 @@
-import Link from 'next/link';
+import { Github } from '@/public/icons/github'
+import { Button } from '@nextui-org/button'
+import Link from 'next/link'
 
 export const Navbar = async () => {
-    const user = true;
+    const user = true
 
     return (
         <nav className="z-50 bg-zinc-950 h-[10vh] border-b border-zinc-800 fixed w-full">
@@ -12,11 +14,8 @@ export const Navbar = async () => {
                 >
                     Great <br /> Quotes
                 </Link>
-                <p className="text-rose-500">
-                    This site is being revamped
-                </p>
-                {/* <AuthButton session={session} user={user} /> */}
+                <a target='_blank' href="https://github.com/anav5704/great-quotes"><Github /></a>
             </div>
         </nav>
-    );
-};
+    )
+}

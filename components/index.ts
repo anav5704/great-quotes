@@ -1,5 +1,6 @@
 export * from './footer'
 export * from './header'
 export * from './navbar'
-export * from "./sign-in"
+export * from "./add-quote"
 export * from "./copy-quote"
+export * from "./quote-card"
