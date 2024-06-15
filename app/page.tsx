@@ -1,4 +1,4 @@
-import { Header, AddQuote, CopyQuote, QuoteCard } from '@/components'
+import { Header, AddQuote, CreateAccount, CopyQuote, QuoteCard } from '@/components'
 import { Quote, User } from '@/drizzle/schema'
 import { currentUser } from '@/lib/user'
 import { desc } from 'drizzle-orm'
@@ -34,7 +34,7 @@ export default async function Home() {
                     </span>
                 </h3>
                 <div className="space-x-5">
-                    <AddQuote user={!!user} />
+                    {user ? <AddQuote /> : <CreateAccount />}
 
                 </div>
             </section>

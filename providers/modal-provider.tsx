@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { CreateQuote } from "@/components"
+import { QuoteModal } from "@/components/quote-modal"
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false)
@@ -13,6 +13,6 @@ export const ModalProvider = () => {
     if (!isMounted) return
 
     return (
-        <CreateQuote />
+        <QuoteModal />
     )
 } 
