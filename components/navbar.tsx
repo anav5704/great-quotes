@@ -7,7 +7,7 @@ export const Navbar = async () => {
 
     return (
         <nav className="z-50 bg-zinc-950 h-[10vh] border-b border-zinc-800 fixed w-full">
-            <div className="flex items-center justify-between w-3/4 mx-auto h-full">
+            <div className="flex items-center justify-between w-11/12 lg:w-3/4 mx-auto h-full">
                 <Link
                     className="text-lg font-medium cursor-pointer leading-none"
                     href="/"

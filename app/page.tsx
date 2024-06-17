@@ -17,17 +17,19 @@ export default async function Home() {
     return (
         <main
             id="hero"
-            className="py-[10vh] min-h-[90vh]"
+            className="mx-auto w-11/12 lg:w-3/4 py-[10vh] min-h-[90vh]"
         >
             <section className='py-24 flex flex-col items-center justify-center gap-8'>
                 <Header className='text-center'>Great Quotes From Great People.</Header>
-                <h3 className="text-2xl text-zinc-500 text-center">
+                <h3 className="text-xl md:text-2xl text-zinc-500 text-center">
                     Friends talk. Friends talk{' '}
                     <span className="text-white">
                         way too much.
-                    </span>{' '}
+                    </span>
+                    {" "}
                     They won't stop talking.
-                    <br />
+                    {" "}
+                    <br className='hidden md:block' />
                     And once in a while, they say something that{' '}
                     <span className="text-white">
                         sticks for life.
@@ -38,7 +40,7 @@ export default async function Home() {
 
                 </div>
             </section>
-            <section className='w-3/4 mx-auto grid grid-cols-2 gap-7'>
+            <section className='mx-auto grid grid-cols-1 md:grid-cols-2 gap-7'>
                 {quotes.map((quote, index) => (
                     <QuoteCard key={index} quote={quote} userId={user?.id || ""} />
                 ))}
