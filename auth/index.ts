@@ -1,8 +1,9 @@
-import { db } from "@/drizzle"
+import Google from "next-auth/providers/google"
 import { User } from "@/drizzle/schema"
 import { and, eq } from "drizzle-orm"
+import { v4 as uuid } from "uuid"
 import NextAuth from "next-auth"
-import Google from "next-auth/providers/google"
+import { db } from "@/drizzle"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [Google({
@@ -25,6 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                 if (!user) {
                     await db.insert(User).values({
+                        id: uuid(),
                         name: session?.user?.name,
                         email: session?.user?.email,
                     })

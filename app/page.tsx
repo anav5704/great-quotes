@@ -40,7 +40,7 @@ export default async function Home() {
             </section>
             <section className='w-3/4 mx-auto grid grid-cols-2 gap-7'>
                 {quotes.map((quote, index) => (
-                    <QuoteCard key={index} quote={quote} />
+                    <QuoteCard key={index} quote={quote} userId={user?.id || ""} />
                 ))}
             </section>
         </main>

@@ -17,11 +17,11 @@ export const QuoteModal = () => {
 
     const action = type === "createQuote" ? "Create" : type === "updateQuote" ? "Update" : "Delete"
 
-    // useEffect(() => {
-    //     setQuote("")
-    //     setError("")
-    //     if (type === "update" && data.content) setQuote(data.content)
-    // }, [data, isOpen])
+    useEffect(() => {
+        setQuote("")
+        setError("")
+        if (type === "updateQuote" && data.content) setQuote(data.content)
+    }, [data, isOpen, type])
 
 
     const mutateQuote = async () => {
@@ -29,15 +29,15 @@ export const QuoteModal = () => {
             setIsLoading(true)
 
             if (type === "createQuote") {
-                await axios.post("/api/quotes", { quote })
+                await axios.post("/api/quotes", { content: quote })
             }
             else if (type === "updateQuote") {
                 if (!data.id) throw Error("Quote ID is required")
-                console.log("Updating Quote")
+                await axios.patch("/api/quotes", { content: quote, id: data.id })
             }
             else {
                 if (!data.id) throw Error("Quote ID is required")
-                console.log("Deleting Quote")
+                axios.delete("/api/quotes", { data: { id: data.id } })
             }
 
             router.refresh()
@@ -53,13 +53,13 @@ export const QuoteModal = () => {
     }
 
     return (
-        <Modal placement="center" closeButton={<></>} className="shadow-none rounded-2xl dark  border border-zinc-800" onOpenChange={onClose} isOpen={isOpen} backdrop="blur">
+        <Modal classNames={{ header: "pb-0" }} placement="center" closeButton={<></>} className="shadow-none rounded-2xl dark  border border-zinc-800" onOpenChange={onClose} isOpen={isOpen} backdrop="blur">
             <ModalContent>
-                <ModalHeader className="text-3xl">{action} Quote</ModalHeader>
+                <ModalHeader className="text-2xl">{action} Quote</ModalHeader>
                 <ModalBody>
-                    {type === "createQuote" && (<p>You can edit and delete this quote later on.</p>)}
-                    {type === "updateQuote" && (<p>Feel free to make changes to your quote.</p>)}
-                    {type === "deleteQuote" && (<p>You sure? This quote will be permanently removed.</p>)}
+                    {type === "createQuote" && (<p className="text-lg">You can edit and delete this quote later on.</p>)}
+                    {type === "updateQuote" && (<p className="text-lg">Feel free to make changes to your quote.</p>)}
+                    {type === "deleteQuote" && (<p className="text-lg">You sure? This quote will be permanently removed.</p>)}
                     {type !== "deleteQuote" && (
                         <Input
                             type="text"
@@ -70,10 +70,10 @@ export const QuoteModal = () => {
                     {error && (<p className="text-rose-500">{error}</p>)}
                 </ModalBody>
                 <ModalFooter className="gap-x-3">
-                    <Button isDisabled={isLoading} radius="lg" variant="light" onPress={onClose}>
+                    <Button className="text-base" isDisabled={isLoading} radius="lg" variant="light" onPress={onClose}>
                         Close
                     </Button>
-                    <Button isDisabled={isLoading} isLoading={isLoading} radius="lg" onPress={mutateQuote} className="text-black bg-white">
+                    <Button isDisabled={isLoading} isLoading={isLoading} radius="lg" onPress={mutateQuote} className="text-black bg-white text-base">
                         {action}
                     </Button>
                 </ModalFooter>

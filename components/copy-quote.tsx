@@ -23,7 +23,7 @@ export const CopyQuote = ({ content, author }: CopyQuoteProps) => {
     return (
         <button
             onClick={handleCopy}
-            className="grid place-content-center p-5 opacity-100 group-hover:opacity-100 transition"
+            className="grid place-content-center"
         >
             {copied ? <Check size={20} /> : <Copy size={20} />}
         </button>
