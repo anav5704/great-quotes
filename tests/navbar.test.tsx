@@ -19,4 +19,13 @@ describe("Navbar", () => {
         expect(navbar).toHaveTextContent(/great quotes/i)
     })
 
+    it("Should have link to source code", () => {
+        render(<Navbar />)
+
+        const link = screen.getByRole("link", {
+            name: /github/i
+        })
+
+        expect(link).toHaveAttribute("href", "https://github.com/anav5704/great-quotes")
+    })
 })

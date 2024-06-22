@@ -11,7 +11,7 @@ export const Navbar = () => {
                 >
                     Great <br /> Quotes
                 </Link>
-                <a target='_blank' href="https://github.com/anav5704/great-quotes"><Github /></a>
+                <a title='Source Code' target='_blank' href="https://github.com/anav5704/great-quotes"><Github /></a>
             </div>
         </nav>
     )
