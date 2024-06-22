@@ -1,8 +1,8 @@
 "use client"
 
+import { CopyQuote } from "@/components/copy-quote"
 import { Pen, PenBox, Trash2 } from "lucide-react"
 import { useModal } from "@/hooks/use-modal"
-import { CopyQuote } from "@/components"
 import { Quote, User } from "@/types"
 
 
