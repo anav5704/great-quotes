@@ -22,10 +22,23 @@ export const CopyQuote = ({ content, author }: CopyQuoteProps) => {
 
     return (
         <button
+            aria-label="Copy quote"
             onClick={handleCopy}
             className="grid place-content-center"
         >
-            {copied ? <Check size={20} /> : <Copy size={20} />}
+            {copied ?
+                <Check
+                    role="img"
+                    aria-label="Check"
+                    size={20}
+                />
+                :
+                <Copy
+                    role="img"
+                    aria-label="Copy"
+                    size={20}
+                />
+            }
         </button>
     )
 }

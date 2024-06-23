@@ -2,9 +2,8 @@ import { Footer, Navbar } from '@/components'
 import { Analytics } from '@vercel/analytics/react'
 import { ModalProvider } from "@/providers/modal-provider"
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import type { Metadata } from 'next'
 import { Karla } from 'next/font/google'
-import { SessionProvider } from "next-auth/react"
+import type { Metadata } from 'next'
 import './globals.css'
 
 const font = Karla({
