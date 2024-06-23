@@ -10,6 +10,9 @@ const config: Config = {
     testEnvironment: 'jsdom',
     verbose: true,
     setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+    moduleNameMapper: {
+        '^next-auth/react$': '<rootDir>/__mocks__/auth.ts'
+    },
 };
 
 export default createJestConfig(config);

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import { user } from "@/__mocks__/user";
 import { quote } from "@/__mocks__/quote";
 
-describe("Copy quote", () => {
+describe("Copy Quote", () => {
     it("Should render copy button", () => {
         render (<CopyQuote author={user.name} content={quote.content} />)
 
