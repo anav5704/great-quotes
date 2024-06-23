@@ -53,7 +53,7 @@ export const QuoteModal = () => {
     }
 
     return (
-        <Modal classNames={{ header: "pb-0" }} placement="center" closeButton={<></>} className="shadow-none rounded-2xl dark  border border-zinc-800" onOpenChange={onClose} isOpen={isOpen} backdrop="blur">
+        <Modal data-testid="quote-modal" classNames={{ header: "pb-0" }} placement="center" closeButton={<></>} className="shadow-none rounded-2xl dark  border border-zinc-800" onOpenChange={onClose} isOpen={isOpen} backdrop="blur">
             <ModalContent>
                 <ModalHeader className="text-2xl">{action} Quote</ModalHeader>
                 <ModalBody>

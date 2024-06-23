@@ -1,13 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
-import { CreateAccount } from "@/components/create-account";
-import userEvent from "@testing-library/user-event";
-import { signIn } from "next-auth/react";
+import { CreateAccount } from "@/components/create-account"
+import { signIn } from "next-auth/react"
 
-jest.mock("next-auth/react");
+jest.mock("next-auth/react")
 
 describe("Create Account", () => {
-    it("shoud render button", () => {
+    it("should render button", () => {
         render(<CreateAccount />)
 
         const button = screen.getByRole("button", {
@@ -17,7 +17,7 @@ describe("Create Account", () => {
         expect(button).toBeInTheDocument()
     })
 
-    it("shoud render google icon", () => {
+    it("should render google icon", () => {
         render(<CreateAccount />)
 
         const icon = screen.getByRole("img", {
@@ -27,7 +27,7 @@ describe("Create Account", () => {
         expect(icon).toBeInTheDocument()
     })
 
-    it("shoud call sign in function with google", async () => {
+    it("should call sign in function with google", async () => {
         render(<CreateAccount />)
 
         const button = screen.getByRole("button", {
