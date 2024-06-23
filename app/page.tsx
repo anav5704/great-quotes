@@ -20,7 +20,7 @@ export default async function Home() {
             className="mx-auto w-11/12 lg:w-3/4 py-[10vh] min-h-[90vh]"
         >
             <section className='py-24 flex flex-col items-center justify-center gap-8'>
-                <Header className='text-center'>Great Quotes From Great People.</Header>
+                <Header data-testid="hero-text" className='text-center'>Great Quotes From Great People.</Header>
                 <h3 className="text-xl md:text-2xl text-zinc-500 text-center">
                     Friends talk. Friends talk{' '}
                     <span className="text-white">
