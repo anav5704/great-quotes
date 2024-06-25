@@ -10,7 +10,7 @@ interface QuoteCardProps {
 
 export const QuoteCard = ({ quote, userId }: QuoteCardProps) => {
     return (
-        <article className='flex flex-col gap-5 justify-between col-span-1 group rounded-2xl border border-zinc-800 bg-zinc-900'>
+        <article data-test="quote-card" className='flex flex-col gap-5 justify-between col-span-1 group rounded-2xl border border-zinc-800 bg-zinc-900'>
             <p className='p-5 text-xl'>{quote.content}</p>
             <div className='flex items-center justify-between'>
                 <QuoteControls quote={quote} userId={userId} />

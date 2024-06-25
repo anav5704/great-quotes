@@ -11,6 +11,7 @@ export const AddQuote = () => {
         <Button
             size="lg"
             radius="lg"
+            date-test="add-quote"
             className="text-lg"
             endContent={
                 <Plus

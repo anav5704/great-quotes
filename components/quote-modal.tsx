@@ -53,7 +53,7 @@ export const QuoteModal = () => {
     }
 
     return (
-        <Modal data-testid="quote-modal" classNames={{ header: "pb-0" }} placement="center" closeButton={<></>} className="shadow-none rounded-2xl dark  border border-zinc-800" onOpenChange={onClose} isOpen={isOpen} backdrop="blur">
+        <Modal data-test="quote-modal" classNames={{ header: "pb-0" }} placement="center" closeButton={<></>} className="shadow-none rounded-2xl dark  border border-zinc-800" onOpenChange={onClose} isOpen={isOpen} backdrop="blur">
             <ModalContent>
                 <ModalHeader className="text-2xl">{action} Quote</ModalHeader>
                 <ModalBody>
@@ -64,6 +64,7 @@ export const QuoteModal = () => {
                         <Input
                             type="text"
                             size="lg"
+                            data-test="quote-input"
                             placeholder="There's no place like home."
                             value={quote} onChange={(e) => setQuote(e.target.value)}
                         />)}

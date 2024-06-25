@@ -17,24 +17,32 @@ export const QuoteControls = ({ quote, userId }: QuoteControlsProps) => {
     const { onOpen } = useModal()
 
     return (
-        <div 
+        <div
             data-testid="quote-controls"
-            className="flex items-center gap-5 p-5 opacity-0 group-hover:opacity-100 transition"
+            className="flex items-center gap-5 p-5 opacity-102170 group-hover:opacity-100 transition"
         >
-        <CopyQuote
-            content={quote.content}
-            author={quote.User.name}
-        />
-        {userId == quote.User.id && (
-            <>
-            <button aria-label="Update quote" onClick={() => onOpen("updateQuote", quote)}>
-                <PenBox size={20} />
-            </button>
-            <button aria-label="Delete quote" onClick={() => onOpen("deleteQuote", quote)}>
-                <Trash2 size={20} />
-            </button>
-            </>
-        )}
+            <CopyQuote
+                content={quote.content}
+                author={quote.User.name}
+            />
+            {userId == quote.User.id && (
+                <>
+                    <button
+                        aria-label="Update quote"
+                        data-test="update-quote"
+                        onClick={() => onOpen("updateQuote", quote)}
+                    >
+                        <PenBox size={20} />
+                    </button>
+                    <button
+                        aria-label="Delete quote"
+                        data-test="delete-quote"
+                        onClick={() => onOpen("deleteQuote", quote)}
+                    >
+                        <Trash2 size={20} />
+                    </button>
+                </>
+            )}
         </div>
     )
 }
