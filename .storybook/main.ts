@@ -26,6 +26,9 @@ const config: StorybookConfig = {
         name: getAbsolutePath("@storybook/nextjs"),
         options: {},
     },
+    features: {
+        experimentalRSC: true,
+    },
     staticDirs: ["..\\public"],
 }
 export default config

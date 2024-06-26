@@ -19,7 +19,7 @@ export const QuoteControls = ({ quote, userId }: QuoteControlsProps) => {
     return (
         <div
             data-testid="quote-controls"
-            className="flex items-center gap-5 p-5 opacity-102170 group-hover:opacity-100 transition"
+            className="flex items-center gap-5 p-5 opacity-100 md:opacity-0 group-hover:opacity-100 transition"
         >
             <CopyQuote
                 content={quote.content}
