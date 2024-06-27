@@ -4,6 +4,30 @@
         "build": {
             "outputs": [".next/**", "!.next/cache/**"]
         },
-        "test": {}
+        "dev": {
+            "outputs": [],
+            "cache": false
+        },
+        "test:unit:run": {
+            "outputs": [],
+            "cache": false
+        },
+        "test:component:run": {
+            "outputs": [],
+            "cache": false
+        },
+        "test:e2e:run": {
+            "outputs": [],
+            "cache": false
+        },
+        "test": {
+            "dependsOn": [
+                "test:unit:run",
+                "test:component:run",
+                "test:e2e:run"
+            ],
+            "outputs": [],
+            "cache": false
+        }
     }
 }

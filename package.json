@@ -9,7 +9,7 @@
         "start": "next start",
         "lint": "next lint",
         "format": "npx prettier --write .",
-        "test:unit": "jest",
+        "test:unit:run": "jest",
         "test:component:open": "storybook  dev -p 6006",
         "test:component:run": "test-storybook",
         "test:e2e:open": "cypress open",
