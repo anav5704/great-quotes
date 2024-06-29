@@ -1,4 +1,4 @@
-Great Quotes ✨
+# Great Quotes ✨
 
 ![hero image](https://github.com/anav5704/great-quotes/blob/main/docs/great-quotes.png)
 
